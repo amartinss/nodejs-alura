@@ -1,6 +1,6 @@
 module.exports = (app) => {
     app.get('/', function (req, resp) {
-        resp.send('NodeJs rodando com Express');
+        resp.marko(require('../views/home.marko'));
     });
 
     app.get('/livros', function (req, resp) {
