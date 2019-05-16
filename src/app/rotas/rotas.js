@@ -13,7 +13,7 @@ module.exports = (app) => {
             .then(livros => resp.marko(
                 require('../views/livros/lista/lista.marko'),
                 {
-                    livros: livros
+                    livros
                 }
             ))
             .catch(error => console.log(error));
