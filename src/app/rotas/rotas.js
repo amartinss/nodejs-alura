@@ -9,18 +9,16 @@ module.exports = (app) => {
     app.get('/livros', function (req, resp) {
         const livroDao = new LivroDao(db);
         
-        livroDao.lista(function(error, results) {
-            resp.marko(
+        livroDao.lista()
+            .then(livros => resp.marko(
                 require('../views/livros/lista/lista.marko'),
                 {
-                    livros: results
+                    livros: livros
                 }
-            );
-        });
+            ))
+            .catch(error => console.log(error));
 
-
-
-        // db.all('SELECT * FROM livros', function(error, results) {
+        // livroDao.lista(function(error, results) {
         //     resp.marko(
         //         require('../views/livros/lista/lista.marko'),
         //         {
@@ -28,7 +26,5 @@ module.exports = (app) => {
         //         }
         //     );
         // });
-
-        
     });
 };
